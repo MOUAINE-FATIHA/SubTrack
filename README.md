@@ -34,7 +34,7 @@ Le projet applique une **architecture en couches** (UI → Service → DAO → E
 - Affichage des 5 derniers paiements
 
 ### Suivi des impayés
-- Détection des paiements manqués, **limitée aux abonnements avec engagement** (règle métier du cahier des charges)
+- Détection des paiements manqués, **limitée aux abonnements avec engagement**
 - Calcul du montant total impayé
 - Calcul de la somme déjà payée pour un abonnement donné
 
@@ -81,28 +81,6 @@ Le projet suit une architecture en couches stricte : chaque couche ne communique
  Util       → utilitaires transverses (dates, validations de saisie)
  Exception  → exceptions métier personnalisées, utilisées par toutes les couches
 ```
-
-**Pourquoi cette séparation ?** Elle isole la logique métier (Service) du mode de stockage (DAO). Le Service dépend d'une **interface** DAO, jamais de son implémentation directe — ce qui permettrait par exemple de remplacer la persistance en mémoire par une base de données via JDBC sans modifier ni le Service ni l'UI.
-
----
-
-## Modèle de données
-
-```
-Abonnement (classe abstraite)
- ├── AbonnementAvecEngagement   (+ dureeEngagementMois)
- └── AbonnementSansEngagement
-
-Paiement
- → relié à un Abonnement via idAbonnement (relation 1..n)
-
-Enums :
- StatutAbonnement : ACTIVE · SUSPENDU · RESILIE
- StatutPaiement   : PAYE · NON_PAYE · EN_RETARD
- TypePaiement     : CB · VIREMENT · PRELEVEMENT
-```
-
----
 
 ## Arborescence du projet
 
@@ -188,19 +166,5 @@ java -cp out com.formation.abonnements.ui.MenuPrincipal
 
 ## Suivi du projet
 
-- **Board Jira** : <colle ici l'URL de ton board Jira>
+- **Board Jira** : https://fatihamouaine1-1788777177360.atlassian.net/jira/software/projects/SUB/boards/34?filter=&groupBy=none
 - **Dépôt GitHub** : https://github.com/MOUAINE-FATIHA/SubTrack
-
----
-
-## Pistes d'amélioration (bonus)
-
-- Persistance via base de données relationnelle (PostgreSQL / MySQL) avec JDBC
-- Sauvegarde des logs applicatifs dans un fichier
-- Export des rapports financiers en CSV / JSON
-
----
-
-## Auteur
-
-**Fatiha Mouaine** — Projet individuel réalisé dans le cadre du Sprint 1 (14/09/2026 → 18/09/2026).
