@@ -76,8 +76,8 @@ public class Paiement {
     @Override
     public String toString() {
         return String.format(
-                "Echeance %s - abonnement %s - due le %s - payée le %s - type: %s - statut: %s",
-                idPaiement.substring(0, 8), idAbonnement.substring(0, 8), dateEcheance,
+                "id: %s | abonnement: %s | due le %s | payée le %s | type: %s | statut: %s",
+                idPaiement, idAbonnement, dateEcheance,
                 datePaiement != null ? datePaiement : "-", typePaiement, statut
         );
     }
